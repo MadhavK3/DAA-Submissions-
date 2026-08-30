@@ -1,0 +1,13 @@
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment1_MergeSort.cpp
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment1_MergeSort.cpp -o Assignment1_MergeSort
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment1_MergeSort
+Enter number of customer orders: 4
+Enter order timestamps (HH:MM):
+12:30
+09:15
+14:45
+10:00
+
+Original order timestamps: 12:30 09:15 14:45 10:00
+Sorted order timestamps: 09:15 10:00 12:30 14:45
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
