@@ -1,0 +1,38 @@
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment3_FractionalKnapsack.cpp
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment3_FractionalKnapsack.cpp -o Assignment3_FractionalKnapsack
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment3_FractionalKnapsack
+===============================================
+     EMERGENCY RELIEF SUPPLY DISTRIBUTION
+          FRACTIONAL KNAPSACK
+===============================================
+
+Available Relief Supplies:
+-------------------------------------------------------------
+Item           Weight      Utility     Divisible   Ratio
+-------------------------------------------------------------
+Medicine       5           50          No          10.00
+Food           10.00       30.00       Yes         3.00
+Water          20.00       20.00       Yes         1.00
+-------------------------------------------------------------
+
+Enter boat capacity (kg): 17
+
+Greedy Preference Order (Highest Utility/Weight Ratio):
+1. Medicine -> Ratio = 10.00
+2. Food -> Ratio = 3.00
+3. Water -> Ratio = 1.00
+
+Items selected for the boat:
+-------------------------------------------------------------
+Medicine -> Full | Weight: 5.00 kg | Utility: 50.00
+Food -> Full | Weight: 10.00 kg | Utility: 30.00
+Water -> Partial | Fraction: 0.10 | Weight: 2.00 kg | Utility: 2.00
+-------------------------------------------------------------
+
+Boat Capacity: 17.00 kg
+Maximum Utility Obtained: 82.00
+
+===============================================
+        RELIEF DISTRIBUTION COMPLETED
+===============================================
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
