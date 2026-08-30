@@ -1,0 +1,52 @@
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment2_QuickSort.cpp
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment2_QuickSort.cpp -o Assignment2_QuickSort
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment2_QuickSort
+============================================
+     STREAMFLIX MOVIE RECOMMENDATION
+          QUICK SORT SYSTEM
+============================================
+
+Enter number of movies to generate: 10
+
+Generated Movie Dataset:
+------------------------------------------------------------
+Movie           IMDB Rating     Year    Watch Time
+------------------------------------------------------------
+Movie1          8.9             2001    139 mins
+Movie2          9.1             2002    96 mins
+Movie3          8.2             2023    189 mins
+Movie4          6               2013    139 mins
+Movie5          5.6             2006    104 mins
+Movie6          6.5             2012    148 mins
+Movie7          7               2018    119 mins
+Movie8          6.3             2018    154 mins
+Movie9          9               2017    116 mins
+Movie10         7.2             2022    103 mins
+------------------------------------------------------------
+
+Select sorting parameter:
+1. IMDB Rating
+2. Release Year
+3. Watch Time Popularity
+Enter your choice: 1
+
+============================================
+Movies Sorted by IMDB Rating
+============================================
+
+Sorted Movie Dataset:
+------------------------------------------------------------
+Movie           IMDB Rating     Year    Watch Time
+------------------------------------------------------------
+Movie5          5.6             2006    104 mins
+Movie4          6               2013    139 mins
+Movie8          6.3             2018    154 mins
+Movie6          6.5             2012    148 mins
+Movie7          7               2018    119 mins
+Movie10         7.2             2022    103 mins
+Movie3          8.2             2023    189 mins
+Movie1          8.9             2001    139 mins
+Movie9          9               2017    116 mins
+Movie2          9.1             2002    96 mins
+------------------------------------------------------------
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
