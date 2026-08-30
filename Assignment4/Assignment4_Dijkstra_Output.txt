@@ -1,0 +1,48 @@
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment4_Dijkstra.cpp
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment4_Dijkstra.cpp -o Assignment4_Dijkstra
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment4_Dijkstra
+=============================================
+       SMART CITY TRAFFIC MANAGEMENT
+             DIJKSTRA'S ALGORITHM
+=============================================
+
+Enter number of intersections (vertices): 6
+Enter number of roads (edges): 9
+
+Enter edges (source destination travel_time):
+0 1 10
+0 2 5
+1 2 2
+1 3 1
+2 3 9
+2 4 2
+3 4 4
+3 5 7
+4 5 6
+
+Enter number of hospitals: 1
+Enter hospital locations: 5
+
+Enter ambulance starting location: 0
+
+---------------------------------------------
+INITIAL SHORTEST ROUTE
+---------------------------------------------
+Shortest travel time: 13 minutes
+Nearest hospital: 5
+Path: 0 -> 2 -> 4 -> 5
+
+Enter edge to update (u v newWeight): 2 4 20
+Edge weight updated successfully.
+
+---------------------------------------------
+AFTER REAL-TIME TRAFFIC UPDATE
+---------------------------------------------
+Shortest travel time: 15 minutes
+Nearest hospital: 5
+Path: 0 -> 2 -> 1 -> 3 -> 5
+
+=============================================
+          ROUTE COMPUTATION COMPLETED
+=============================================
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
