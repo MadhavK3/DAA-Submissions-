@@ -86,12 +86,10 @@ int main() {
     vector<double> best_cost(N, INF);
     vector<int> next_node(N, -1);
 
-    // Every node in the final stage can be a destination.
     for (int i = stage_start[S - 1]; i < N; i++) {
         best_cost[i] = 0.0;
     }
 
-    // Backward dynamic programming.
     for (int s = S - 2; s >= 0; s--) {
         for (int u = stage_start[s];
              u < stage_start[s + 1]; u++) {
@@ -188,8 +186,7 @@ int main() {
             continue;
         }
 
-        // Recompute the updated edge's source and propagate
-        // changes backward to all predecessor nodes.
+        
         queue<int> pending;
         vector<bool> in_queue(N, false);
 
