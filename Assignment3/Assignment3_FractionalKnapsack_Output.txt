@@ -1,38 +1,59 @@
 madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment3_FractionalKnapsack.cpp
 madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment3_FractionalKnapsack.cpp -o Assignment3_FractionalKnapsack
 madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment3_FractionalKnapsack
-===============================================
-     EMERGENCY RELIEF SUPPLY DISTRIBUTION
-          FRACTIONAL KNAPSACK
-===============================================
+Enter number of relief items: 5
 
-Available Relief Supplies:
--------------------------------------------------------------
-Item           Weight      Utility     Divisible   Ratio
--------------------------------------------------------------
-Medicine       5           50          No          10.00
-Food           10.00       30.00       Yes         3.00
-Water          20.00       20.00       Yes         1.00
--------------------------------------------------------------
+Item #1:
+Name: Medical Kits
+Weight (kg): 10
+Utility Value: 100
+Is it divisible? (1 = Yes, 0 = No): 0
+Priority (1 = High, 2 = Medium, 3 = Low): 1
 
-Enter boat capacity (kg): 17
+Item #2:
+Name: Food Packets
+Weight (kg): 20
+Utility Value: 60
+Is it divisible? (1 = Yes, 0 = No): 1
+Priority (1 = High, 2 = Medium, 3 = Low): 3
 
-Greedy Preference Order (Highest Utility/Weight Ratio):
-1. Medicine -> Ratio = 10.00
-2. Food -> Ratio = 3.00
-3. Water -> Ratio = 1.00
+Item #3:
+Name: Drinking Water
+Weight (kg): 30
+Utility Value: 90
+Is it divisible? (1 = Yes, 0 = No): 1
+Priority (1 = High, 2 = Medium, 3 = Low): 2
 
-Items selected for the boat:
--------------------------------------------------------------
-Medicine -> Full | Weight: 5.00 kg | Utility: 50.00
-Food -> Full | Weight: 10.00 kg | Utility: 30.00
-Water -> Partial | Fraction: 0.10 | Weight: 2.00 kg | Utility: 2.00
--------------------------------------------------------------
+Item #4:
+Name: Infant Formula
+Weight (kg): 5
+Utility Value: 50
+Is it divisible? (1 = Yes, 0 = No): 0
+Priority (1 = High, 2 = Medium, 3 = Low): 1
 
-Boat Capacity: 17.00 kg
-Maximum Utility Obtained: 82.00
+Item #5:
+Name: Blankets
+Weight (kg): 15
+Utility Value: 45
+Is it divisible? (1 = Yes, 0 = No): 0
+Priority (1 = High, 2 = Medium, 3 = Low): 3
 
-===============================================
-        RELIEF DISTRIBUTION COMPLETED
-===============================================
+Enter maximum weight capacity of the boat (in kg): 25
+
+Sorted Items (by Priority, then Value/Weight):
+Item                Weight    Value     Priority    Value/Weight   Type
+Medical Kits        10        100       1           10.00          Indivisible
+Infant Formula      5.00      50.00     1           10.00          Indivisible
+Drinking Water      30.00     90.00     2           3.00           Divisible
+Food Packets        20.00     60.00     3           3.00           Divisible
+Blankets            15.00     45.00     3           3.00           Indivisible
+
+Items selected for transport:
+ - Medical Kits: 10.00 kg, Utility = 100.00, Priority = 1, Type = Indivisible
+ - Infant Formula: 5.00 kg, Utility = 50.00, Priority = 1, Type = Indivisible
+ - Drinking Water: 10.00 kg, Utility = 30.00, Priority = 2, Type = Divisible
+
+===== Final Report =====
+Total weight carried: 25.00 kg
+Total utility value carried: 180.00 units
 madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
