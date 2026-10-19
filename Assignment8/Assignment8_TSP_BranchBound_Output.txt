@@ -1,0 +1,38 @@
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment8_TSP_BranchBound.cpp
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment8_TSP_BranchBound.cpp -o Assignment8_TSP_BranchBound
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment8_TSP_BranchBound
+===== TSP - Least Cost Branch and Bound =====
+Enter number of cities: 4
+Enter name of city 1: A
+Enter name of city 2: B
+Enter name of city 3: C
+Enter name of city 4: D
+
+Enter the cost matrix (-1 for no direct route):
+Cost from A to A: 0
+Cost from A to B: 10
+Cost from A to C: 15
+Cost from A to D: 20
+Cost from B to A: 10
+Cost from B to B: 0
+Cost from B to C: 35
+Cost from B to D: 25
+Cost from C to A: 15
+Cost from C to B: 35
+Cost from C to C: 0
+Cost from C to D: 30
+Cost from D to A: 20
+Cost from D to B: 25
+Cost from D to C: 30
+Cost from D to D: 0
+
+Choose starting city (1-4): 1
+
+===== Optimal Delivery Route =====
+A -> B -> D -> C -> A
+Minimum Total Cost: 80
+Number of Cities Visited: 4
+
+Algorithm: Least Cost Branch and Bound
+Worst-Case Time Complexity: O(N! * N^2)
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
