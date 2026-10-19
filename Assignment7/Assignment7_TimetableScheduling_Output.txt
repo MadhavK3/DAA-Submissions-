@@ -1,0 +1,52 @@
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment7_TimetableScheduling.cpp
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment7_TimetableScheduling.cpp -o Assignment7_TimetableScheduling
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment7_TimetableScheduling
+===== University Timetable Scheduling =====
+Enter number of courses: 4
+Enter name of course 1: C1
+Enter number of students in C1: 100
+Enter name of course 2: C2
+Enter number of students in C2: 80
+Enter name of course 3: C3
+Enter number of students in C3: 50
+Enter name of course 4: C4
+Enter number of students in C4: 60
+
+Enter number of students with enrolment data: 4
+
+Enter number of courses enrolled by student 1: 2
+Enter course name: C1
+Enter course name: C2
+
+Enter number of courses enrolled by student 2: 2
+Enter course name: C2
+Enter course name: C3
+
+Enter number of courses enrolled by student 3: 2
+Enter course name: C1
+Enter course name: C3
+
+Enter number of courses enrolled by student 4: 1
+Enter course name: C4
+
+Enter number of available rooms: 3
+Enter room name: R1
+Enter capacity of R1: 100
+Enter room name: R2
+Enter capacity of R2: 80
+Enter room name: R3
+Enter capacity of R3: 50
+
+===== University Exam Timetable =====
+Course         Time Slot      Students       Room
+C1             Slot 1         100            R1
+C2             Slot 2         80             R2
+C3             Slot 3         50             R3
+C4             Slot 1         60             R2
+
+Total exam slots required: 3
+Room allocation successful for all exams.
+
+Algorithm: Welsh-Powell Graph Colouring
+Graph colouring time complexity: O(V^2 + E)
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
