@@ -12,7 +12,6 @@ struct Movie
     int watchTime;
 };
 
-// Swap two movies
 void swapMovies(Movie &a, Movie &b)
 {
     Movie temp = a;
@@ -20,7 +19,6 @@ void swapMovies(Movie &a, Movie &b)
     b = temp;
 }
 
-// Partition function
 int partition(Movie movies[], int low, int high, int choice)
 {
     Movie pivot = movies[high];
@@ -49,7 +47,6 @@ int partition(Movie movies[], int low, int high, int choice)
     return i + 1;
 }
 
-// Quick Sort function
 void quickSort(Movie movies[], int low, int high, int choice)
 {
     if (low < high)
@@ -61,25 +58,17 @@ void quickSort(Movie movies[], int low, int high, int choice)
     }
 }
 
-// Generate movie dataset
 void generateMovies(Movie movies[], int n)
 {
     for (int i = 0; i < n; i++)
     {
         movies[i].name = "Movie" + to_string(i + 1);
-
-        // Generate IMDB rating between 5.0 and 9.9
         movies[i].imdbRating = 5.0 + (rand() % 50) / 10.0;
-
-        // Generate release year between 2000 and 2025
         movies[i].releaseYear = 2000 + rand() % 26;
-
-        // Generate watch time between 80 and 200 minutes
         movies[i].watchTime = 80 + rand() % 121;
     }
 }
 
-// Display movie dataset
 void displayMovies(Movie movies[], int n)
 {
     cout << "\n";
@@ -120,13 +109,11 @@ int main()
 
     Movie *movies = new Movie[n];
 
-    // Generate dataset
     generateMovies(movies, n);
 
     cout << "\nGenerated Movie Dataset:";
     displayMovies(movies, n);
 
-    // Ask user for sorting parameter
     int choice;
 
     cout << "\nSelect sorting parameter:\n";
@@ -143,7 +130,6 @@ int main()
         return 0;
     }
 
-    // Apply Quick Sort
     quickSort(movies, 0, n - 1, choice);
 
     cout << "\n============================================\n";
@@ -157,7 +143,6 @@ int main()
 
     cout << "\n============================================";
 
-    // Display sorted dataset
     cout << "\n\nSorted Movie Dataset:";
     displayMovies(movies, n);
 

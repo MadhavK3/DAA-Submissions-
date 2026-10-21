@@ -19,14 +19,12 @@ public:
         graph.resize(V);
     }
 
-    // Add an undirected road
     void addEdge(int u, int v, int weight)
     {
         graph[u].push_back({v, weight});
         graph[v].push_back({u, weight});
     }
 
-    // Update weight of an existing undirected road
     void updateEdgeWeight(int u, int v, int newWeight)
     {
         bool found = false;
@@ -54,13 +52,11 @@ public:
             cout << "Edge not found.\n";
     }
 
-    // Add hospital location
     void addHospital(int node)
     {
         hospitals.push_back(node);
     }
 
-    // Check whether a node is a hospital
     bool isHospital(int node)
     {
         for (int hospital : hospitals)
@@ -72,7 +68,6 @@ public:
         return false;
     }
 
-    // Dijkstra's algorithm to find nearest hospital
     void shortestPathToNearestHospital(int source)
     {
         vector<int> dist(V, INT_MAX);
@@ -96,18 +91,15 @@ public:
 
             pq.pop();
 
-            // Ignore outdated entry
             if (currentDistance > dist[u])
                 continue;
 
-            // First hospital removed from min-heap is nearest
             if (isHospital(u))
             {
                 nearestHospital = u;
                 break;
             }
 
-            // Relax all neighbouring nodes
             for (auto edge : graph[u])
             {
                 int v = edge.first;
@@ -130,7 +122,6 @@ public:
             return;
         }
 
-        // Reconstruct shortest path
         vector<int> path;
         int current = nearestHospital;
 
@@ -235,14 +226,12 @@ int main()
         return 0;
     }
 
-    // Initial shortest path
     cout << "\n---------------------------------------------\n";
     cout << "INITIAL SHORTEST ROUTE\n";
     cout << "---------------------------------------------\n";
 
     city.shortestPathToNearestHospital(ambulanceLocation);
 
-    // Real-time traffic update
     int u, v, newWeight;
 
     cout << "\nEnter edge to update (u v newWeight): ";
@@ -256,7 +245,6 @@ int main()
 
     city.updateEdgeWeight(u, v, newWeight);
 
-    // Recompute shortest path
     cout << "\n---------------------------------------------\n";
     cout << "AFTER REAL-TIME TRAFFIC UPDATE\n";
     cout << "---------------------------------------------\n";

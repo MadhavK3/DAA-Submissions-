@@ -21,7 +21,6 @@ struct Item {
     }
 };
 
-// Sort by priority first, then value/weight ratio.
 bool compare(const Item& a, const Item& b) {
     if (a.priority == b.priority)
         return a.valuePerWeight() > b.valuePerWeight();
