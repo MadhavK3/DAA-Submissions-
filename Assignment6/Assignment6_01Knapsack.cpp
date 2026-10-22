@@ -1,134 +1,153 @@
+
 #include <iostream>
 #include <vector>
 #include <string>
-#include <iomanip>
 #include <algorithm>
+#include <map>
+#include <iomanip>
 using namespace std;
 
 struct Item {
     string name;
-    int weight;
-    int utility;
-    bool perishable;
+    int weight, value;
+};
+
+struct State {
+    int weight, value;
+    vector<string> items;
 };
 
 int main() {
     int n, W;
 
-    cout << "===== Disaster Relief Resource Allocation =====\n";
-    cout << "Enter number of relief items: ";
+    cout << "============================================================\n";
+    cout << "    RELIEF SUPPLY KNAPSACK (DP with Merging & Pruning)\n";
+    cout << "============================================================\n";
+
+    cout << "Enter number of items: ";
     cin >> n;
 
-    if (n <= 0) {
-        cout << "Number of items must be positive.\n";
-        return 0;
-    }
-
-    vector<Item> items(n);
-
-    for (int i = 0; i < n; i++) {
-        cout << "\nItem " << i + 1 << ":\n";
-        cout << "Enter item name: ";
-        cin >> ws;
-        getline(cin, items[i].name);
-
-        cout << "Enter weight (kg): ";
-        cin >> items[i].weight;
-
-        cout << "Enter utility value: ";
-        cin >> items[i].utility;
-
-        cout << "Is it perishable/life-saving? (1 = Yes, 0 = No): ";
-        cin >> items[i].perishable;
-
-        if (items[i].weight <= 0 || items[i].utility < 0) {
-            cout << "Invalid weight or utility value.\n";
-            return 0;
-        }
-    }
-
-    cout << "\nEnter truck capacity (kg): ";
+    cout << "Enter truck capacity (kg): ";
     cin >> W;
 
-    if (W < 0) {
-        cout << "Capacity cannot be negative.\n";
-        return 0;
+    if (n <= 0 || W < 0) {
+        cout << "Invalid number of items or truck capacity.\n";
+        return 1;
     }
 
-    const int PRIORITY_BONUS = 20;
-    vector<int> adjustedUtility(n);
+    vector<Item> a(n);
+
+    cout << "Enter each item (name weight value):\n";
 
     for (int i = 0; i < n; i++) {
-        adjustedUtility[i] = items[i].utility;
+        cin >> a[i].name >> a[i].weight >> a[i].value;
 
-        if (items[i].perishable) {
-            adjustedUtility[i] += PRIORITY_BONUS;
+        if (a[i].weight <= 0 || a[i].value < 0) {
+            cout << "Invalid weight or utility value.\n";
+            return 1;
         }
     }
 
-    vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
+    vector<State> dp = {{0, 0, {}}};
+    int totalMerged = 0;
+    int totalPruned = 0;
 
-    for (int i = 1; i <= n; i++) {
-        for (int w = 0; w <= W; w++) {
-            dp[i][w] = dp[i - 1][w];
+    for (int i = 0; i < n; i++) {
+        const Item& item = a[i];
 
-            if (items[i - 1].weight <= w) {
-                dp[i][w] = max(
-                    dp[i][w],
-                    adjustedUtility[i - 1] +
-                    dp[i - 1][w - items[i - 1].weight]
-                );
+        cout << "\nProcessing Item " << i + 1 << ": "
+             << item.name << " (" << item.weight
+             << " kg, " << item.value << ")\n";
+
+        vector<State> next = dp;
+        int merged = 0;
+        int pruned = 0;
+
+        for (const State& s : dp) {
+            if (s.weight + item.weight <= W) {
+                State candidate = s;
+                candidate.weight += item.weight;
+                candidate.value += item.value;
+                candidate.items.push_back(item.name);
+                next.push_back(candidate);
+            } else {
+                pruned++;
             }
         }
+
+        map<int, State> uniqueStates;
+
+        for (const State& s : next) {
+            auto it = uniqueStates.find(s.weight);
+
+            if (it == uniqueStates.end()) {
+                uniqueStates[s.weight] = s;
+            } else {
+                merged++;
+
+                if (s.value > it->second.value) {
+                    uniqueStates[s.weight] = s;
+                }
+            }
+        }
+
+        dp.clear();
+        int bestValue = -1;
+
+        for (const auto& entry : uniqueStates) {
+            const State& s = entry.second;
+
+            if (s.value > bestValue) {
+                dp.push_back(s);
+                bestValue = s.value;
+            } else {
+                pruned++;
+            }
+        }
+
+        totalMerged += merged;
+        totalPruned += pruned;
+
+        cout << "  - States after merging: " << uniqueStates.size()
+             << "\n";
+        cout << "  - Merged states: " << merged
+             << " (same weight, kept higher value)\n";
+        cout << "  - Pruned states: " << pruned
+             << " (over capacity or dominated)\n";
+        cout << "  - States remaining: " << dp.size() << "\n";
     }
 
-    vector<int> selected;
-    int remainingCapacity = W;
+    State best = dp[0];
 
-    for (int i = n; i >= 1; i--) {
-        if (dp[i][remainingCapacity] !=
-            dp[i - 1][remainingCapacity]) {
-            selected.push_back(i - 1);
-            remainingCapacity -= items[i - 1].weight;
+    for (const State& s : dp) {
+        if (s.value > best.value)
+            best = s;
+    }
+
+    cout << "\n============================================================\n";
+    cout << "                       FINAL REPORT\n";
+    cout << "============================================================\n";
+
+    cout << "Selected Items:\n";
+
+    if (best.items.empty()) {
+        cout << "No items selected.\n";
+    } else {
+        for (int i = 0; i < (int)best.items.size(); i++) {
+            cout << i + 1 << ". " << best.items[i] << "\n";
         }
     }
 
-    reverse(selected.begin(), selected.end());
+    cout << "------------------------------------------------------------\n";
+    cout << "Total Weight Carried : " << best.weight << " kg\n";
+    cout << "Maximum Utility      : " << best.value << "\n";
+    cout << "Total Merged States  : " << totalMerged << "\n";
+    cout << "Total Pruned States  : " << totalPruned << "\n";
+    cout << "============================================================\n";
 
-    int totalWeight = 0;
-    int totalOriginalUtility = 0;
-    int totalAdjustedUtility = 0;
-
-    cout << "\n===== Selected Relief Items =====\n";
-    cout << left << setw(25) << "Item Name"
-         << setw(12) << "Weight"
-         << setw(12) << "Utility"
-         << setw(15) << "Priority"
-         << setw(18) << "Adjusted Utility" << '\n';
-
-    for (int index : selected) {
-        cout << left << setw(25) << items[index].name
-             << setw(12) << items[index].weight
-             << setw(12) << items[index].utility
-             << setw(15)
-             << (items[index].perishable ? "High" : "Normal")
-             << setw(18) << adjustedUtility[index] << '\n';
-
-        totalWeight += items[index].weight;
-        totalOriginalUtility += items[index].utility;
-        totalAdjustedUtility += adjustedUtility[index];
-    }
-
-    cout << "\n===== Final Report =====\n";
-    cout << "Truck Capacity: " << W << " kg\n";
-    cout << "Total Weight Carried: " << totalWeight << " kg\n";
-    cout << "Total Original Utility: "
-         << totalOriginalUtility << " units\n";
-    cout << "Total Adjusted Utility: "
-         << totalAdjustedUtility << " units\n";
-
-    cout << "\nTime Complexity: O(N * W)\n";
-    cout << "Space Complexity: O(N * W)\n";
+    cout << "\nTime Complexity: Depends on the number of states generated.\n";
+    cout << "Space Complexity: Depends on the number of states retained.\n";
 
     return 0;
 }
+`

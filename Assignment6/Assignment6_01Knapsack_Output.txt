@@ -1,52 +1,64 @@
 madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ vi Assignment6_01Knapsack.cpp
-madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ -std=c++17 Assignment6_01Knapsack.cpp -o Assignment6_01Knapsack
-madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./Assignment6_01Knapsack
-===== Disaster Relief Resource Allocation =====
-Enter number of relief items: 5
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ g++ Assignment6_01Knapsack.cpp -o knap
+madhavk3@LAPTOP-SUF2RUKJ:~/DAA$ ./knap
+============================================================
+    RELIEF SUPPLY KNAPSACK (DP with Merging & Pruning)
+============================================================
+Enter number of items: 5
+Enter truck capacity (kg): 40
+Enter each item (name weight value):
+Medical 10 100
+Food 20 60
+Water 30 90
+Blankets 15 45
+Formula 5 50
 
-Item 1:
-Enter item name: Medical Kits
-Enter weight (kg): 10
-Enter utility value: 100
-Is it perishable/life-saving? (1 = Yes, 0 = No): 1
 
-Item 2:
-Enter item name: Food Packets
-Enter weight (kg): 20
-Enter utility value: 60
-Is it perishable/life-saving? (1 = Yes, 0 = No): 0
+-
+Processing Item 1: Medical (10 kg, 100)
+  - States after merging: 2
+  - Merged states: 0 (same weight, kept higher value)
+  - Pruned states: 0 (over capacity or dominated)
+  - States remaining: 2
 
-Item 3:
-Enter item name: Drinking Water
-Enter weight (kg): 30
-Enter utility value: 90
-Is it perishable/life-saving? (1 = Yes, 0 = No): 0
+Processing Item 2: Food (20 kg, 60)
+  - States after merging: 4
+  - Merged states: 0 (same weight, kept higher value)
+  - Pruned states: 1 (over capacity or dominated)
+  - States remaining: 3
 
-Item 4:
-Enter item name: Infant Formula
-Enter weight (kg): 5
-Enter utility value: 50
-Is it perishable/life-saving? (1 = Yes, 0 = No): 1
+Processing Item 3: Water (30 kg, 90)
+  - States after merging: 4
+  - Merged states: 1 (same weight, kept higher value)
+  - Pruned states: 1 (over capacity or dominated)
+  - States remaining: 4
 
-Item 5:
-Enter item name: Blankets
-Enter weight (kg): 15
-Enter utility value: 45
-Is it perishable/life-saving? (1 = Yes, 0 = No): 0
+Processing Item 4: Blankets (15 kg, 45)
+  - States after merging: 6
+  - Merged states: 0 (same weight, kept higher value)
+  - Pruned states: 3 (over capacity or dominated)
+  - States remaining: 5
 
-Enter truck capacity (kg): 25
+Processing Item 5: Formula (5 kg, 50)
+  - States after merging: 8
+  - Merged states: 1 (same weight, kept higher value)
+  - Pruned states: 3 (over capacity or dominated)
+  - States remaining: 6
 
-===== Selected Relief Items =====
-Item Name                Weight      Utility     Priority       Adjusted Utility
-Medical Kits             10          100         High           120
-Infant Formula           5           50          High           70
+============================================================
+                       FINAL REPORT
+============================================================
+Selected Items:
+1. Medical
+2. Food
+3. Formula
+------------------------------------------------------------
+Total Weight Carried : 35 kg
+Maximum Utility      : 210
+Total Merged States  : 2
+Total Pruned States  : 8
+============================================================
 
-===== Final Report =====
-Truck Capacity: 25 kg
-Total Weight Carried: 15 kg
-Total Original Utility: 150 units
-Total Adjusted Utility: 190 units
-
-Time Complexity: O(N * W)
-Space Complexity: O(N * W)
+Time Complexity: Depends on the number of states generated.
+Space Complexity: Depends on the number of states retained.
 madhavk3@LAPTOP-SUF2RUKJ:~/DAA$
